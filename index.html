@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- charset, viewport and title -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>imgur.sh</title>
+
+  <!-- metas for webapps added to homescreen and other stuff -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- icons -->
+  <link rel="apple-touch-icon-precomposed" href="/assets/images/pirate.png" />
+  <link rel="apple-touch-icon" href="/assets/images/pirate.png" />
+
+  <!-- stylesheets and javascripts -->
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="/assets/stylesheets/main.css" />
+  <script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+</head>
+<body>
+  <div id="wrapper">
+
+    <header class="main">
+      <h4><a href="/" class="no-leet">Latchezar Tzvetkoff</a></h4>
+      <h5>The Nerd Archive</h5>
+      <div class="social">
+        <a class="github" href="https://github.com/tzvetkoff" title="Fork me on GitHub">Fork me on GitHub</a>
+        <a class="twitter" href="https://twitter.com/tzvetkoff" title="Follow me on Twitter">Follow me on Twitter</a>
+        <a class="facebook" href="https://www.facebook.com/tzvetkoff" title="Find me on Facebook">Find me on Facebook</a>
+        <a class="email" href="mailto:latchezar&lt;foo&gt;tzvetkoff&lt;bar&gt;net?subject=Hi!" title="E-mail me">E-mail me</a>
+      </div>
+    </header>
+
+    <article>
+      <h1>imgur.sh setup</h1>
+      <p>Congratulations, <strong>imgur.sh</strong> is now authorized to create posts on your behalf.</p>
+      <p>Now head back to the terminal and run:</p>
+      <figure class="highlight"><pre><code class="language-bash" data-lang="bash">imgur.sh --access-token='<span id="access_token">{ACCESS_TOKEN}</span>' --save-config</code></pre></figure>
+    </article>
+
+    <footer><a href="/">⌂</a></footer>
+
+  </div>
+  <script type="text/javascript">
+    (function() {
+      var
+        params = {},
+        queryString = location.hash.substring(1),
+        regex = /([^&=]+)=([^&]*)/g,
+        m;
+
+      while (m = regex.exec(queryString)) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+      }
+
+      document.getElementById('access_token').innerHTML = params['access_token'];
+    })();
+  </script>
+</body>
+</html>
