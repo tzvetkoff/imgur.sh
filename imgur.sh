@@ -28,7 +28,7 @@ usage() {
 
 do_curl() {
   ${VERBOSE} && echo "--------------------------------"
-  ${VERBOSE} && echo ">> ${CURL[@]} ${@}"
+  ${VERBOSE} && echo ">> ${CURL[*]} ${*}"
   API_RESPONSE=$("${CURL[@]}" "${@}")
   CURL_EXIT_CODE=${?}
   ${VERBOSE} && echo "<< ${API_RESPONSE}"
@@ -108,6 +108,7 @@ VERBOSE='false'
 #
 
 if [[ -f "${HOME}/.config/imgur.sh/config" ]]; then
+  # shellcheck disable=SC1090
   source "${HOME}/.config/imgur.sh/config"
 fi
 
@@ -127,7 +128,7 @@ while [[ -n "${1}" ]]; do
       --access-token=*)  ACCESS_TOKEN="${1:15}";;
       -A*)               ACCESS_TOKEN="${1:2}";;
 
-      --save-config) mkdir -p "${HOME}/.config/imgur.sh"; > "${HOME}/.config/imgur.sh/config"; echo "ACCESS_TOKEN=${ACCESS_TOKEN}" >> "${HOME}/.config/imgur.sh/config"; exit 0;;
+      --save-config) mkdir -p "${HOME}/.config/imgur.sh"; : > "${HOME}/.config/imgur.sh/config"; echo "ACCESS_TOKEN=${ACCESS_TOKEN}" >> "${HOME}/.config/imgur.sh/config"; exit 0;;
 
       -p|--privacy) PRIVACY="${2}"; shift;;
       --privacy=*)  PRIVACY="${1:10}";;
