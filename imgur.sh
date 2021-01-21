@@ -19,7 +19,7 @@ usage() {
   echo
   echo "To authorize imgur.sh to post on your behalf, please open the following URL in your browser:"
   echo "https://api.imgur.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token"
-  exit ${1}
+  exit "${1}"
 }
 
 #
