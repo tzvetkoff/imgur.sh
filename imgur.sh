@@ -116,7 +116,8 @@ fi
 # Parse arguments
 #
 
-PARSE=true
+PARSE='true'
+ARGS=()
 while [[ -n "${1}" ]]; do
   if ${PARSE}; then
     case "${1}" in
