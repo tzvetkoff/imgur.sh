@@ -49,8 +49,7 @@ do_upload() {
   CURL_ARGS+=('-F' "description=${1}"); shift
   CURL_ARGS+=('https://api.imgur.com/3/image.xml')
 
-  do_curl "${CURL_ARGS[@]}"
-  if [[ ${?} -ne 0 ]]; then
+  if ! do_curl "${CURL_ARGS[@]}"; then
     echo "Error uploading ${1}" >&2
     echo >&2
     echo "${API_RESPONSE}" >&2
@@ -72,8 +71,7 @@ do_create_album() {
   done
   CURL_ARGS+=('https://api.imgur.com/3/album.xml')
 
-  do_curl "${CURL_ARGS[@]}"
-  if [[ ${?} -ne 0 ]]; then
+  if ! do_curl "${CURL_ARGS[@]}"; then
     echo 'Error creating album' >&2
     echo >&2
     echo "${API_RESPONSE}" >&2
@@ -87,8 +85,8 @@ do_create_album() {
 
 do_response() {
   VALUE="${API_RESPONSE}"
-  VALUE="${VALUE##*<${1}>}"
-  VALUE="${VALUE%%</${1}>*}"
+  VALUE="${VALUE##*<"${1}">}"
+  VALUE="${VALUE%%</"${1}">*}"
   echo "${VALUE}"
 }
 
@@ -108,7 +106,7 @@ VERBOSE='false'
 #
 
 if [[ -f "${HOME}/.config/imgur.sh/config" ]]; then
-  # shellcheck disable=SC1090
+  # shellcheck disable=1091
   source "${HOME}/.config/imgur.sh/config"
 fi
 
